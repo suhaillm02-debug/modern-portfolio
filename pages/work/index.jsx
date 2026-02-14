@@ -20,7 +20,7 @@ const Work = () => {
               exit="hidden"
               className="h2 xl:mt-12"
             >
-              My work <span className="text-accent">.</span>
+              My Experience <span className="text-accent">.</span>
             </motion.h2>
             <motion.p
               variants={fadeIn("up", 0.4)}
@@ -29,8 +29,9 @@ const Work = () => {
               exit="hidden"
               className="mb-4 max-w-[400px] mx-auto lg:mx-0"
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-              tempora eligendi, quisquam tempore sint reiciendis.
+              500+ motorcycles sold at Royal Enfield. Multiple creator accounts managed at Graphy Inc.
+              Every role has been about building trust, exceeding targets, and turning relationships
+              into measurable results.
             </motion.p>
           </div>
 

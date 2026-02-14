@@ -18,9 +18,16 @@
   color: #f13024;
 }
 
+html,
+body {
+  background-color: #131424;
+  margin: 0;
+  padding: 0;
+}
+
 @layer base {
   body {
-    @apply bg-secondary overflow-hidden leading-relaxed;
+    @apply bg-[#131424] overflow-hidden leading-relaxed;
   }
   .page {
     @apply w-full h-screen overflow-hidden;

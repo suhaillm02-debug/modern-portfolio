@@ -7,27 +7,20 @@ import { useState } from "react";
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setIsLoading(true);
+  const handleMailto = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const name = formData.get("name");
+    const subject = formData.get("subject");
+    const message = formData.get("message");
+    const email = formData.get("email");
 
-    const myForm = event.target;
-    const formData = new FormData(myForm);
+    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+    const mailtoUrl = `mailto:suhaill.m02@gmail.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${body}`;
 
-    fetch("/__forms.html", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          alert("Thank you. I will get back to you ASAP.");
-        } else {
-          console.log(res);
-        }
-      })
-      .catch((error) => console.log(error))
-      .finally(() => setIsLoading(false));
+    window.location.href = mailtoUrl;
   };
 
   return (
@@ -53,7 +46,7 @@ const Contact = () => {
             animate="show"
             exit="hidden"
             className="flex-1 flex flex-col gap-6 w-full mx-auto"
-            onSubmit={handleSubmit}
+            onSubmit={handleMailto}
             autoComplete="off"
             autoCapitalize="off"
             name="contact"
@@ -67,8 +60,6 @@ const Contact = () => {
                 name="name"
                 placeholder="Name"
                 className="input"
-                disabled={isLoading}
-                aria-disabled={isLoading}
                 required
                 aria-required
               />
@@ -77,8 +68,6 @@ const Contact = () => {
                 name="email"
                 placeholder="E-mail"
                 className="input"
-                disabled={isLoading}
-                aria-disabled={isLoading}
                 required
                 aria-required
               />
@@ -88,8 +77,6 @@ const Contact = () => {
               name="subject"
               placeholder="Subject"
               className="input"
-              disabled={isLoading}
-              aria-disabled={isLoading}
               required
               aria-required
             />
@@ -97,16 +84,12 @@ const Contact = () => {
               name="message"
               placeholder="Message..."
               className="textarea"
-              disabled={isLoading}
-              aria-disabled={isLoading}
               required
               aria-required
             />
             <button
               type="submit"
               className="btn rounded-full border border-white/50 max-w-[170px] px-8 transition-all duration-300 flex items-center justify-center overflow-hidden hover:border-accent group"
-              disabled={isLoading}
-              aria-disabled={isLoading}
             >
               <span className="group-hover:-translate-y-[120%] group-hover:opacity-0 transition-all duration-500">
                 Let's talk

@@ -2,18 +2,21 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import CountUp from "react-countup";
 import {
-  FaCss3,
-  FaFigma,
-  FaHtml5,
-  FaJs,
-  FaReact,
-  FaWordpress,
+  FaChartLine,
+  FaHandshake,
+  FaUserCheck,
+  FaLightbulb,
+  FaBullseye,
+  FaTrophy,
+  FaUserTie,
 } from "react-icons/fa";
 import {
-  SiAdobephotoshop,
-  SiAdobexd,
-  SiFramer,
-  SiNextdotjs,
+  SiSalesforce,
+  SiMicrosoftoffice,
+  SiGooglecloud,
+  SiPowerbi,
+  SiZendesk,
+  SiHubspot,
 } from "react-icons/si";
 
 import Avatar from "../../components/Avatar";
@@ -26,33 +29,29 @@ export const aboutData = [
     title: "skills",
     info: [
       {
-        title: "Web Development",
-        icons: [
-          FaHtml5,
-          FaCss3,
-          FaJs,
-          FaReact,
-          SiNextdotjs,
-          SiFramer,
-          FaWordpress,
-        ],
+        title: "Customer Strategy",
+        icons: [FaChartLine, FaHandshake, FaUserTie, FaUserCheck],
       },
       {
-        title: "UI/UX Design",
-        icons: [FaFigma, SiAdobexd, SiAdobephotoshop],
+        title: "Enterprise Tools",
+        icons: [SiSalesforce, SiHubspot, SiZendesk, SiPowerbi, SiMicrosoftoffice],
       },
     ],
   },
   {
-    title: "awards",
+    title: "awards / impact",
     info: [
       {
-        title: "Webby Awards - Honoree",
-        stage: "2011 - 2012",
+        title: "Top Performer Q3 - Royal Enfield Teknik",
+        stage: "2024",
       },
       {
-        title: "Adobe Design Achievement Awards - Finalist",
-        stage: "2009 - 2010",
+        title: "100% SLA Compliance - Graphy Inc.",
+        stage: "2025",
+      },
+      {
+        title: "Strategic Upselling Champion",
+        stage: "2024",
       },
     ],
   },
@@ -60,33 +59,29 @@ export const aboutData = [
     title: "experience",
     info: [
       {
-        title: "UX/UI Designer - XYZ Company",
-        stage: "2012 - 2023",
+        title: "Customer Success Intern - Graphy Inc.",
+        stage: "Oct 2025 - Present",
       },
       {
-        title: "Web Developer - ABC Agency",
-        stage: "2010 - 2012",
-      },
-      {
-        title: "Intern - DEF Corporation",
-        stage: "2008 - 2010",
+        title: "Sales & CRM - Royal Enfield Teknik",
+        stage: "Apr 2022 - May 2025",
       },
     ],
   },
   {
-    title: "credentials",
+    title: "education & certs",
     info: [
       {
-        title: "Web Development - ABC University, LA, CA",
-        stage: "2011",
+        title: "BBA - Izee Group of Institutions",
+        stage: "2022 - 2025",
       },
       {
-        title: "Computer Science Diploma - AV Technical Institute",
-        stage: "2009",
+        title: "AI and Power BI - Office Master",
+        stage: "2025",
       },
       {
-        title: "Certified Graphic Designer - ABC Institute, Los Angeles, CA",
-        stage: "2006",
+        title: "Intro to Generative AI - Google",
+        stage: "2025",
       },
     ],
   },
@@ -120,8 +115,7 @@ const About = () => {
             exit="hidden"
             className="h2"
           >
-            Captivating <span className="text-accent">stories</span> birth
-            magnificent designs.
+            Building <span className="text-accent">Value</span> One Connection at a Time.
           </motion.h2>
           <motion.p
             variants={fadeIn("right", 0.4)}
@@ -129,9 +123,10 @@ const About = () => {
             animate="show"
             className="max-w-[500px] mx-auto xl:mx-0 mb-6 xl:mb-12 px-2 xl:px-0"
           >
-            10 years ago, I begin freelancing as a developer. Since then, I've
-            done remote work for agencies, consulted for startups, and
-            collabrated on digital products for business and consumer use.
+            Based in Bengaluru, I specialize in Customer Success and Sales Strategy. Currently at Graphy Inc.,
+            I help creators succeed by managing accounts and resolving support requests.
+            My background at Royal Enfield taught me the art of high-stakes sales and CRM,
+            consistently exceeding targets through customer-centric solutions.
           </motion.p>
 
           {/* counters */}
@@ -145,40 +140,40 @@ const About = () => {
               {/* experience */}
               <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
                 <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={10} duration={5} />
+                  <CountUp start={0} end={3} duration={5} />
                 </div>
                 <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
                   Years of experience.
                 </div>
               </div>
 
-              {/* clients */}
+              {/* accounts */}
               <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
                 <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={250} duration={5} />
+                  <CountUp start={0} end={100} duration={5} /> +
                 </div>
                 <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Satisfied clients.
+                  Creator Accounts Managed.
                 </div>
               </div>
 
-              {/* projects */}
+              {/* sales */}
               <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
                 <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={650} duration={5} />
+                  <CountUp start={0} end={500} duration={5} /> +
                 </div>
                 <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Finished projects.
+                  Motorcycles Sold.
                 </div>
               </div>
 
-              {/* awards */}
+              {/* certifications */}
               <div className="relative flex-1">
                 <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={8} duration={5} />
+                  <CountUp start={0} end={5} duration={5} />
                 </div>
                 <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Winning awards.
+                  Professional Certs.
                 </div>
               </div>
             </div>
@@ -197,10 +192,9 @@ const About = () => {
             {aboutData.map((item, itemI) => (
               <div
                 key={itemI}
-                className={`${
-                  index === itemI &&
+                className={`${index === itemI &&
                   "text-accent after:w-[100%] after:bg-accent after:transition-all after:duration-300"
-                } cursor-pointer capitalize xl:text-lg relative after:w-8 after:h-[2px] after:bg-white after:absolute after:-bottom-1 after:left-0`}
+                  } cursor-pointer capitalize xl:text-lg relative after:w-8 after:h-[2px] after:bg-white after:absolute after:-bottom-1 after:left-0`}
                 onClick={() => setIndex(itemI)}
               >
                 {item.title}

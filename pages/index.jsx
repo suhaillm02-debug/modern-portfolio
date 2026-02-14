@@ -20,8 +20,8 @@ const Home = () => {
             exit="hidden"
             className="h1"
           >
-            Transforming Ideas <br /> Into{" "}
-            <span className="text-accent">Digital Reality</span>
+            Driving Growth Through <br />
+            <span className="text-accent">Relationship Excellence</span>
           </motion.h1>
 
           {/* subtitle */}
@@ -32,10 +32,9 @@ const Home = () => {
             exit="hidden"
             className="max-w-sm xl:max-w-xl mx-auto xl:mx-0 mb-10 xl:mb-16"
           >
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate,
-            exercitationem harum, quia nulla temporibus deleniti libero veniam
-            vero beatae numquam ducimus illum ab similique ipsam tempore fugit
-            quod laudantium debitis.
+            Customer Success professional with a proven track record in Sales and CRM.
+            Currently at Graphy Inc., I specialize in creator success, account management,
+            and building lasting client relationships through data-driven strategies and effective communication.
           </motion.p>
 
           {/* btn */}
@@ -72,7 +71,7 @@ const Home = () => {
           animate="show"
           exit="hidden"
           transition={{ duration: 1, ease: "easeInOut" }}
-          className="w-full h-full max-w-[737px] max-h-[678px] absolute -bottom-32 lg:bottom-0 lg:right-[8%]"
+          className="w-full h-full max-w-[737px] max-h-[678px] absolute -bottom-32 lg:-bottom-48 lg:right-[0%]"
         >
           <Avatar />
         </motion.div>

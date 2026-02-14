@@ -5,6 +5,9 @@ import {
   RxReader,
   RxRocket,
   RxArrowTopRight,
+  RxPerson,
+  RxChatBubble,
+  RxTokens,
 } from "react-icons/rx";
 import { FreeMode, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,29 +18,29 @@ import "swiper/css/pagination";
 
 const serviceData = [
   {
-    Icon: RxCrop,
-    title: "Branding",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    Icon: RxPencil2,
-    title: "Design",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    Icon: RxDesktop,
-    title: "Development",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    Icon: RxReader,
-    title: "Copywriting",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    Icon: RxPerson,
+    title: "Customer Success",
+    description: "Onboarding and relationship management to ensure creator and client growth.",
   },
   {
     Icon: RxRocket,
-    title: "SEO",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    title: "Sales Strategy",
+    description: "Driven approaches to meet and exceed monthly/quarterly revenue targets.",
+  },
+  {
+    Icon: RxChatBubble,
+    title: "CRM Management",
+    description: "Expert handling of customer records and inquiries via Salesforce and other tools.",
+  },
+  {
+    Icon: RxReader,
+    title: "Engagement",
+    description: "Building brand loyalty through personalized product demonstrations and support.",
+  },
+  {
+    Icon: RxTokens,
+    title: "SaaS Solutions",
+    description: "Guidance on leveraging software platforms for business optimization.",
   },
 ];
 
