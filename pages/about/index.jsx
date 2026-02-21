@@ -1,100 +1,141 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import CountUp from "react-countup";
 import {
   FaChartLine,
   FaHandshake,
   FaUserCheck,
-  FaLightbulb,
-  FaBullseye,
-  FaTrophy,
   FaUserTie,
-} from "react-icons/fa";
+  FaTrophy,
+  FaMedal,
+  FaStar,
+  FaBriefcase,
+  FaGraduationCap,
+  FaCertificate,
+} from "react-icons/fa6";
 import {
   SiSalesforce,
   SiMicrosoftoffice,
-  SiGooglecloud,
   SiPowerbi,
   SiZendesk,
   SiHubspot,
+  SiGooglecloud,
 } from "react-icons/si";
 
 import Avatar from "../../components/Avatar";
 import Circles from "../../components/Circles";
 import { fadeIn } from "../../variants";
 
-//  data
+// ── Skills: icon + label chips ────────────────────────────────────────────────
+const customerStrategySkills = [
+  { Icon: FaChartLine, label: "Sales Analytics" },
+  { Icon: FaHandshake, label: "Relationship Mgmt" },
+  { Icon: FaUserTie, label: "Account Mgmt" },
+  { Icon: FaUserCheck, label: "Customer Success" },
+];
+
+const enterpriseToolSkills = [
+  { Icon: SiSalesforce, label: "Salesforce" },
+  { Icon: SiHubspot, label: "HubSpot" },
+  { Icon: SiZendesk, label: "Zendesk" },
+  { Icon: SiPowerbi, label: "Power BI" },
+  { Icon: SiMicrosoftoffice, label: "MS Office 365" },
+];
+
+// ── Tab data ──────────────────────────────────────────────────────────────────
 export const aboutData = [
   {
     title: "skills",
-    info: [
-      {
-        title: "Customer Strategy",
-        icons: [FaChartLine, FaHandshake, FaUserTie, FaUserCheck],
-      },
-      {
-        title: "Enterprise Tools",
-        icons: [SiSalesforce, SiHubspot, SiZendesk, SiPowerbi, SiMicrosoftoffice],
-      },
+    type: "skills",
+    groups: [
+      { heading: "Customer Strategy", skills: customerStrategySkills },
+      { heading: "Enterprise Tools", skills: enterpriseToolSkills },
     ],
   },
   {
     title: "awards / impact",
+    type: "list",
     info: [
-      {
-        title: "Top Performer Q3 - Royal Enfield Teknik",
-        stage: "2024",
-      },
-      {
-        title: "100% SLA Compliance - Graphy Inc.",
-        stage: "2025",
-      },
-      {
-        title: "Strategic Upselling Champion",
-        stage: "2024",
-      },
+      { Icon: FaTrophy, title: "Top Performer Q3", sub: "Royal Enfield Teknik", stage: "2024" },
+      { Icon: FaMedal, title: "100% SLA Compliance", sub: "Graphy Inc.", stage: "2025" },
+      { Icon: FaStar, title: "Strategic Upselling Champion", sub: "Royal Enfield Teknik", stage: "2024" },
     ],
   },
   {
     title: "experience",
+    type: "list",
     info: [
-      {
-        title: "Customer Success Intern - Graphy Inc.",
-        stage: "Oct 2025 - Present",
-      },
-      {
-        title: "Sales & CRM - Royal Enfield Teknik",
-        stage: "Apr 2022 - May 2025",
-      },
+      { Icon: FaBriefcase, title: "Customer Success Intern", sub: "Graphy Inc.", stage: "Oct 2025 – Present" },
+      { Icon: FaBriefcase, title: "Sales & CRM Executive", sub: "Royal Enfield Teknik", stage: "Apr 2022 – May 2025" },
     ],
   },
   {
-    title: "education & certs",
+    title: "education",
+    type: "list",
     info: [
-      {
-        title: "BBA - Izee Group of Institutions",
-        stage: "2022 - 2025",
-      },
-      {
-        title: "AI and Power BI - Office Master",
-        stage: "2025",
-      },
-      {
-        title: "Intro to Generative AI - Google",
-        stage: "2025",
-      },
+      { Icon: FaGraduationCap, title: "Bachelor of Business Administration", sub: "Izee Group of Institutions", stage: "2022 – 2025" },
+    ],
+  },
+  {
+    title: "certifications",
+    type: "certs",
+    info: [
+      { Icon: SiPowerbi, label: "AI and Power BI", issuer: "Office Master", year: "2025" },
+      { Icon: SiGooglecloud, label: "Intro to Generative AI", issuer: "Google", year: "2025" },
+      { Icon: FaCertificate, label: "CRM & Customer Success", issuer: "HubSpot Academy", year: "2025" },
     ],
   },
 ];
 
+// ── Sub-components ─────────────────────────────────────────────────────────────
+
+// Labeled icon chip used in Skills tab
+const SkillChip = ({ Icon, label }) => (
+  <div className="flex items-center gap-x-2 bg-white/5 border border-white/10 rounded-lg px-3 py-2 hover:border-accent/50 hover:bg-white/10 transition-all duration-200">
+    <Icon className="text-accent text-lg flex-shrink-0" />
+    <span className="text-xs text-white/80 whitespace-nowrap">{label}</span>
+  </div>
+);
+
+// Generic list row used in Awards / Experience / Education tabs
+const ListRow = ({ Icon, title, sub, stage }) => (
+  <div className="flex items-start gap-x-3 text-white/70">
+    <div className="mt-[2px] text-accent text-lg flex-shrink-0">
+      <Icon />
+    </div>
+    <div className="flex-1">
+      <div className="text-white font-medium text-sm leading-snug">{title}</div>
+      <div className="text-xs text-white/50">{sub}</div>
+    </div>
+    <div className="text-xs text-accent font-semibold whitespace-nowrap pt-[2px]">{stage}</div>
+  </div>
+);
+
+// Certification badge card
+const CertCard = ({ Icon, label, issuer, year }) => (
+  <div className="flex items-center gap-x-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 hover:border-accent/40 hover:bg-white/[0.08] transition-all duration-200">
+    <div className="text-2xl text-accent flex-shrink-0">
+      <Icon />
+    </div>
+    <div className="flex-1">
+      <div className="text-white text-sm font-medium leading-snug">{label}</div>
+      <div className="text-xs text-white/50">{issuer}</div>
+    </div>
+    <div className="text-[11px] font-bold text-accent bg-accent/10 border border-accent/20 rounded px-2 py-0.5">
+      {year}
+    </div>
+  </div>
+);
+
+// ── Main component ─────────────────────────────────────────────────────────────
 const About = () => {
   const [index, setIndex] = useState(0);
+  const active = aboutData[index];
 
   return (
     <div className="h-full bg-primary/30 py-32 text-center xl:text-left">
       <Circles />
 
-      {/* avatar img */}
+      {/* avatar */}
       <motion.div
         variants={fadeIn("right", 0.2)}
         initial="hidden"
@@ -106,7 +147,7 @@ const About = () => {
       </motion.div>
 
       <div className="container mx-auto h-full flex flex-col items-center xl:flex-row gap-x-6">
-        {/* text */}
+        {/* ── left: bio + skill bars ── */}
         <div className="flex-1 flex flex-col justify-center">
           <motion.h2
             variants={fadeIn("right", 0.2)}
@@ -117,6 +158,7 @@ const About = () => {
           >
             Building <span className="text-accent">Value</span> One Connection at a Time.
           </motion.h2>
+
           <motion.p
             variants={fadeIn("right", 0.4)}
             initial="hidden"
@@ -129,58 +171,39 @@ const About = () => {
             consistently exceeding targets through customer-centric solutions.
           </motion.p>
 
-          {/* counters */}
+          {/* skill bars */}
           <motion.div
             variants={fadeIn("right", 0.6)}
             initial="hidden"
             animate="show"
-            className="hidden md:flex md:max-w-xl xl:max-w-none mx-auto xl:mx-0 mb-8"
+            className="hidden md:block md:max-w-xl xl:max-w-none mx-auto xl:mx-0 mb-8 w-full"
           >
-            <div className="flex flex-1 xl:gap-x-6">
-              {/* experience */}
-              <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={3} duration={5} />
+            {[
+              { label: "Customer Relationship Management", pct: 95 },
+              { label: "Sales Strategy & Target Achievement", pct: 90 },
+              { label: "Client Onboarding & Retention", pct: 92 },
+              { label: "CRM Tools & Data Analytics", pct: 85 },
+            ].map((skill, i) => (
+              <div key={i} className="mb-4">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs uppercase tracking-widest text-white/70">{skill.label}</span>
+                  <span className="text-xs font-bold text-accent">{skill.pct}%</span>
                 </div>
-                <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Years of experience.
-                </div>
-              </div>
-
-              {/* accounts */}
-              <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={100} duration={5} /> +
-                </div>
-                <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Creator Accounts Managed.
-                </div>
-              </div>
-
-              {/* sales */}
-              <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={500} duration={5} /> +
-                </div>
-                <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Motorcycles Sold.
+                <div className="w-full h-[3px] bg-white/10 rounded-full overflow-hidden">
+                  <motion.div
+                    className="h-full bg-accent rounded-full"
+                    initial={{ scaleX: 0, originX: 0 }}
+                    animate={{ scaleX: skill.pct / 100 }}
+                    transition={{ duration: 1.2, delay: 0.3 + i * 0.15, ease: "easeOut" }}
+                    style={{ width: "100%" }}
+                  />
                 </div>
               </div>
-
-              {/* certifications */}
-              <div className="relative flex-1">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={5} duration={5} />
-                </div>
-                <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Professional Certs.
-                </div>
-              </div>
-            </div>
+            ))}
           </motion.div>
         </div>
 
-        {/* info */}
+        {/* ── right: tabbed info panel ── */}
         <motion.div
           variants={fadeIn("left", 0.4)}
           initial="hidden"
@@ -188,41 +211,47 @@ const About = () => {
           exit="hidden"
           className="flex flex-col w-full xl:max-w-[48%] h-[480px]"
         >
-          <div className="flex gap-x-4 xl:gap-x-8 mx-auto xl:mx-0 mb-4">
+          {/* tab bar */}
+          <div className="flex flex-wrap gap-x-4 xl:gap-x-6 gap-y-2 mx-auto xl:mx-0 mb-6">
             {aboutData.map((item, itemI) => (
-              <div
+              <button
                 key={itemI}
-                className={`${index === itemI &&
-                  "text-accent after:w-[100%] after:bg-accent after:transition-all after:duration-300"
-                  } cursor-pointer capitalize xl:text-lg relative after:w-8 after:h-[2px] after:bg-white after:absolute after:-bottom-1 after:left-0`}
+                className={`${index === itemI
+                    ? "text-accent after:w-[100%] after:bg-accent"
+                    : "text-white/60 hover:text-white"
+                  } cursor-pointer capitalize text-sm xl:text-base relative after:w-0 after:h-[2px] after:bg-white after:absolute after:-bottom-1 after:left-0 after:transition-all after:duration-300 transition-colors duration-200`}
                 onClick={() => setIndex(itemI)}
               >
                 {item.title}
-              </div>
+              </button>
             ))}
           </div>
 
-          <div className="py-2 xl:py-6 flex flex-col gap-y-2 xl:gap-y-4 items-center xl:items-start">
-            {aboutData[index].info.map((item, itemI) => (
-              <div
-                key={itemI}
-                className="flex-1 flex flex-col md:flex-row max-w-max gap-x-2 items-center text-center text-white/60"
-              >
-                {/* title */}
-                <div className="font-light mb-2 md:mb-0">{item.title}</div>
-                <div className="hidden md:flex">-</div>
-                <div>{item.stage}</div>
+          {/* tab body */}
+          <div className="py-2 xl:py-4 flex flex-col gap-y-3 xl:gap-y-4 items-center xl:items-start overflow-y-auto pr-1">
 
-                <div className="flex gap-x-4">
-                  {/* icons */}
-                  {item.icons?.map((Icon, iconI) => (
-                    <div key={iconI} className="text-2xl text-white">
-                      <Icon />
-                    </div>
+            {/* SKILLS tab */}
+            {active.type === "skills" && active.groups.map((group, gi) => (
+              <div key={gi} className="w-full mb-2">
+                <div className="text-xs uppercase tracking-widest text-white/40 mb-2">{group.heading}</div>
+                <div className="flex flex-wrap gap-2">
+                  {group.skills.map((s, si) => (
+                    <SkillChip key={si} Icon={s.Icon} label={s.label} />
                   ))}
                 </div>
               </div>
             ))}
+
+            {/* CERTIFICATIONS tab */}
+            {active.type === "certs" && active.info.map((cert, ci) => (
+              <CertCard key={ci} {...cert} />
+            ))}
+
+            {/* AWARDS / EXPERIENCE / EDUCATION tabs */}
+            {active.type === "list" && active.info.map((item, itemI) => (
+              <ListRow key={itemI} {...item} />
+            ))}
+
           </div>
         </motion.div>
       </div>
